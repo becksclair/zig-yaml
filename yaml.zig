@@ -179,13 +179,13 @@ pub fn parse(alloc: std.mem.Allocator, input: string) !Document {
         }
     }
 
-    const p = &Parser{
+    const p = Parser{
         .alloc = alloc,
         .tokens = all_events.items,
         .lines = lines,
         .index = 0,
     };
-    const stream = try p.parse();
+    const stream = try (&p).parse();
     return stream.docs[0];
 }
 
